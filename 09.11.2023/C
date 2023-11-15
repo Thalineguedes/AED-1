@@ -1,1 +1,16 @@
+//a soma dos elementos do vetor//
+int main() {
+  int v[]={1,2,3,4,5,6,7,8,9,10};
+  int n = sizeof(v)/sizeof(v[0]);
+  int soma = soma_vetor(v, n);
+  printf("soma = %d",soma);
+  return 0;
+}
 
+int soma_vetor (int v[], int n){
+  int soma = 0;
+  for (int i = 0; i < n; i++){
+    soma += v[i];
+  }
+  return soma;
+}
