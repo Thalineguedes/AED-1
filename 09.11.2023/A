@@ -1,1 +1,20 @@
+//o elemento máximo do vetor//
+#include <stdio.h>
 
+int main() {
+  int v[]={1,2,3,4,5,6,7,8,9,10};
+  printf("Maior %d", maior(v, 10));
+  return 0;
+}
+int maior (int v[], int n){
+  int x;
+  if (n==1)
+    return v[0];
+  else if (n>1){
+    x = maior(v, n-1);
+    if (x>v[n-1])
+      return x;
+    else
+      return v[n-1];
+  }  
+}
