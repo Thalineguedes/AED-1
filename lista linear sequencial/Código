@@ -110,4 +110,10 @@ int main() {
 
     return 0;
 }
+//Inserir elementos ao final da lista: Chama insertAtEnd para inserir os elementos 10, 5 e 20
+//Imprimir a lista após inserção ao final: Chama printList para imprimir os elementos
+//Inserir elementos ordenados: Chama insertOrdered para inserir o elemento 15.
+//Imprimir a lista após inserção ordenada: Chama printList para imprimir os elementos após a inserção ordenada.
+//Eliminar elemento pela chave: Chama deleteByKey para remover o elemento 5.
+//Imprimir a lista após remoção: Chama printList para imprimir os elementos após a remoção.
 
