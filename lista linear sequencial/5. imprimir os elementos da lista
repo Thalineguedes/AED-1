@@ -1,4 +1,3 @@
-
 // Função para imprimir os elementos da lista
 void printList(SequentialList list) {
     printf("Elementos da Lista: ");
@@ -8,3 +7,32 @@ void printList(SequentialList list) {
     printf("\n");
 }
 
+int main() {
+    // Criar uma lista vazia
+    SequentialList myList = createList();
+
+    // Inserir elementos ao final da lista
+    insertAtEnd(&myList, 10);
+    insertAtEnd(&myList, 5);
+    insertAtEnd(&myList, 20);
+
+    // Imprimir a lista após inserção ao final
+    printf("Após inserção ao final:\n");
+    printList(myList);
+
+    // Inserir elementos ordenados
+    insertOrdered(&myList, 15);
+
+    // Imprimir a lista após inserção ordenada
+    printf("\nApós inserção ordenada:\n");
+    printList(myList);
+
+    // Eliminar elemento pela chave
+    deleteByKey(&myList, 5);
+
+    // Imprimir a lista após remoção
+    printf("\nApós remoção:\n");
+    printList(myList);
+
+    return 0;
+}
