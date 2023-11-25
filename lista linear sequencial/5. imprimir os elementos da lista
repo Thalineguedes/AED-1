@@ -1,1 +1,10 @@
 
+// Função para imprimir os elementos da lista
+void printList(SequentialList list) {
+    printf("Elementos da Lista: ");
+    for (int i = 0; i < list.length; i++) {
+        printf("%d ", list.data[i]);
+    }
+    printf("\n");
+}
+
