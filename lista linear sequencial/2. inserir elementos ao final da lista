@@ -1,1 +1,11 @@
+Node* insertAtBeginning(Node* head, int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        printf("Erro: Falha na alocação de memória.\n");
+        exit(1);
+    }
 
+    newNode->data = value;
+    newNode->next = head;
+    return newNode;
+}
