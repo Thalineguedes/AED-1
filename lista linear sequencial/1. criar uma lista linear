@@ -1,11 +1,17 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node {
-    int data;
-    struct Node* next;
-} Node;
-Node* createList() {
-    return NULL;
+#define MAX_SIZE 100
+
+// Definição da estrutura da Lista Linear
+typedef struct {
+    int data[MAX_SIZE];
+    int length;
+} SequentialList;
+
+// Função para criar uma lista vazia
+SequentialList createList() {
+    SequentialList newList;
+    newList.length = 0;
+    return newList;
 }
