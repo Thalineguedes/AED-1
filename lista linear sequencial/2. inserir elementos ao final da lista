@@ -1,11 +1,9 @@
-Node* insertAtBeginning(Node* head, int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    if (newNode == NULL) {
-        printf("Erro: Falha na alocação de memória.\n");
-        exit(1);
+// Função para inserir elementos ao final da lista
+void insertAtEnd(SequentialList *list, int element) {
+    if (list->length < MAX_SIZE) {
+        list->data[list->length] = element;
+        list->length++;
+    } else {
+        printf("Lista cheia. Elemento %d não inserido.\n", element);
     }
-
-    newNode->data = value;
-    newNode->next = head;
-    return newNode;
 }
