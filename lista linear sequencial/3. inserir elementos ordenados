@@ -1,1 +1,20 @@
+// Função para inserir elementos ordenados
+void insertOrdered(SequentialList *list, int element) {
+    int i;
 
+    if (list->length < MAX_SIZE) {
+        // Encontrar a posição correta para inserção mantendo a ordem crescente
+        for (i = 0; i < list->length && list->data[i] < element; i++);
+
+        // Deslocar elementos para abrir espaço para o novo elemento
+        for (int j = list->length; j > i; j--) {
+            list->data[j] = list->data[j - 1];
+        }
+
+        // Inserir o novo elemento na posição correta
+        list->data[i] = element;
+        list->length++;
+    } else {
+        printf("Lista cheia. Elemento %d não inserido.\n", element);
+    }
+}
