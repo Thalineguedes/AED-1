@@ -1,0 +1,118 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Definição da estrutura do aluno
+typedef struct {
+    int matricula;
+    char nome[50];
+    int idade;
+} Aluno;
+
+// Definição da estrutura do nó da lista ligada
+typedef struct No {
+    Aluno aluno;
+    struct No* proximo;
+} NoLista;
+
+// Definição da estrutura da lista ligada
+typedef struct {
+    NoLista* inicio;
+} ListaAlunos;
+
+// Inicializar a lista
+void inicializarLista(ListaAlunos* lista) {
+    lista->inicio = NULL;
+}
+
+// Reiniciar lista
+void reiniciarLista(ListaAlunos* lista) {
+    NoLista* atual = lista->inicio;
+    while (atual != NULL) {
+        NoLista* proximo = atual->proximo;
+        free(atual);
+        atual = proximo;
+    }
+    lista->inicio = NULL;
+}
+
+// Retornar a quantidade de elementos válidos na lista
+int quantidadeElementos(ListaAlunos* lista) {
+    int contador = 0;
+    NoLista* atual = lista->inicio;
+    while (atual != NULL) {
+        contador++;
+        atual = atual->proximo;
+    }
+    return contador;
+}
+
+// Retornar se a lista está cheia (assumindo que alocamos dinamicamente a memória conforme necessário)
+int listaCheia() {
+    // Sempre retornamos falso, pois uma lista ligada dinâmica não tem limite de tamanho.
+    return 0;
+}
+
+// Retornar se a lista está vazia
+int listaVazia(ListaAlunos* lista) {
+    return lista->inicio == NULL;
+}
+
+// Exibir os elementos da lista
+void exibirLista(ListaAlunos* lista) {
+    NoLista* atual = lista->inicio;
+    while (atual != NULL) {
+        printf("Matricula: %d, Nome: %s, Idade: %d\n", atual->aluno.matricula, atual->aluno.nome, atual->aluno.idade);
+        atual = atual->proximo;
+    }
+    printf("\n");
+}
+
+// Inserir um elemento de forma ordenada (ascendente) na lista
+void inserirElementoOrdenado(ListaAlunos* lista, Aluno aluno) {
+    NoLista* novoNo = (NoLista*)malloc(sizeof(NoLista));
+    novoNo->aluno = aluno;
+    novoNo->proximo = NULL;
+
+    NoLista* atual = lista->inicio;
+    NoLista* anterior = NULL;
+
+    while (atual != NULL && aluno.matricula > atual->aluno.matricula) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    if (anterior == NULL) {
+        // Inserir no início
+        novoNo->proximo = lista->inicio;
+        lista->inicio = novoNo;
+    } else {
+        // Inserir no meio ou no final
+        anterior->proximo = novoNo;
+        novoNo->proximo = atual;
+    }
+}
+
+// Excluir um elemento da lista pelo valor mantendo a lista ordenada
+void excluirElemento(ListaAlunos* lista, int matricula) {
+    NoLista* atual = lista->inicio;
+    NoLista* anterior = NULL;
+
+    while (atual != NULL && atual->aluno.matricula != matricula) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    if (atual != NULL) {
+        // Elemento encontrado, remover
+        if (anterior == NULL) {
+            // Remover no início
+            lista->inicio = atual->proximo;
+        } else {
+            // Remover no meio ou no final
+            anterior->proximo = atual->proximo;
+        }
+        free(atual);
+    }
+}
