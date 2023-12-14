@@ -1,1 +1,248 @@
+//Lista Linear Sequencial de Elementos Inteiros:
+// lista_linear_sequencial_inteiros.h
+#ifndef LISTA_LINEAR_SEQUENCIAL_INTEIROS_H
+#define LISTA_LINEAR_SEQUENCIAL_INTEIROS_H
+
+struct ListaInt {
+    int *elementos;
+    int tamanho;
+};
+
+struct ListaInt criarListaInt();
+void inserirElementoInt(struct ListaInt *lista, int valor);
+void inserirOrdenadoInt(struct ListaInt *lista, int valor);
+int tamanhoListaInt(struct ListaInt *lista);
+int buscarElementoInt(struct ListaInt *lista, int valor);
+void excluirElementoPosicaoInt(struct ListaInt *lista, int posicao);
+void excluirElementoValorInt(struct ListaInt *lista, int valor);
+void imprimirListaInt(struct ListaInt *lista);
+
+#endif // LISTA_LINEAR_SEQUENCIAL_INTEIROS_H
+// lista_linear_sequencial_inteiros.c
+#include "lista_linear_sequencial_inteiros.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+struct ListaInt criarListaInt() {
+    struct ListaInt lista;
+    lista.elementos = (int *)malloc(sizeof(int) * MAX_TAM);
+    lista.tamanho = 0;
+    return lista;
+}
+
+void inserirElementoInt(struct ListaInt *lista, int valor) {
+    if (lista->tamanho < MAX_TAM) {
+        lista->elementos[lista->tamanho++] = valor;
+    }
+}
+
+void inserirOrdenadoInt(struct ListaInt *lista, int valor) {
+    // Implemente a inserção ordenada
+}
+
+int tamanhoListaInt(struct ListaInt *lista) {
+    return lista->tamanho;
+}
+
+int buscarElementoInt(struct ListaInt *lista, int valor) {
+    // Implemente a busca sequencial
+}
+
+void excluirElementoPosicaoInt(struct ListaInt *lista, int posicao) {
+    // Implemente a exclusão pela posição
+}
+
+void excluirElementoValorInt(struct ListaInt *lista, int valor) {
+    // Implemente a exclusão pelo valor
+}
+
+void imprimirListaInt(struct ListaInt *lista) {
+    for (int i = 0; i < lista->tamanho; i++) {
+        printf("%d ", lista->elementos[i]);
+    }
+    printf("\n");
+}
+//Lista Linear Sequencial de Elementos do Tipo Aluno:
+// lista_linear_sequencial_aluno.h
+#ifndef LISTA_LINEAR_SEQUENCIAL_ALUNO_H
+#define LISTA_LINEAR_SEQUENCIAL_ALUNO_H
+
+struct Aluno {
+    int codigo;
+    char nome[50];
+    int idade;
+    int numeroFilhos;
+};
+
+struct ListaAluno {
+    struct Aluno *elementos;
+    int tamanho;
+};
+
+struct ListaAluno criarListaAluno();
+void inserirAluno(struct ListaAluno *lista, struct Aluno aluno);
+void inserirOrdenadoAluno(struct ListaAluno *lista, struct Aluno aluno);
+int tamanhoListaAluno(struct ListaAluno *lista);
+int buscarAluno(struct ListaAluno *lista, int codigo);
+void excluirAlunoPosicao(struct ListaAluno *lista, int posicao);
+void excluirAlunoCodigo(struct ListaAluno *lista, int codigo);
+void imprimirListaAluno(struct ListaAluno *lista);
+
+#endif // LISTA_LINEAR_SEQUENCIAL_ALUNO_H
+// lista_linear_sequencial_aluno.c
+#include "lista_linear_sequencial_aluno.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct ListaAluno criarListaAluno() {
+    struct ListaAluno lista;
+    lista.elementos = (struct Aluno *)malloc(sizeof(struct Aluno) * MAX_TAM);
+    lista.tamanho = 0;
+    return lista;
+}
+
+void inserirAluno(struct ListaAluno *lista, struct Aluno aluno) {
+    if (lista->tamanho < MAX_TAM) {
+        lista->elementos[lista->tamanho++] = aluno;
+    }
+}
+
+void inserirOrdenadoAluno(struct ListaAluno *lista, struct Aluno aluno) {
+    // Implemente a inserção ordenada
+}
+
+int tamanhoListaAluno(struct ListaAluno *lista) {
+    return lista->tamanho;
+}
+
+int buscarAluno(struct ListaAluno *lista, int codigo) {
+    // Implemente a busca sequencial
+}
+
+void excluirAlunoPosicao(struct ListaAluno *lista, int posicao) {
+    // Implemente a exclusão pela posição
+}
+
+void excluirAlunoCodigo(struct ListaAluno *lista, int codigo) {
+    // Implemente a exclusão pelo código
+}
+
+void imprimirListaAluno(struct ListaAluno *lista) {
+    for (int i = 0; i < lista->tamanho; i++) {
+        printf("Código: %d, Nome: %s, Idade: %d, Número de Filhos: %d\n",
+               lista->elementos[i].codigo, lista->elementos[i].nome,
+               lista->elementos[i].idade, lista->elementos[i].numeroFilhos);
+    }
+}
+//Lista Ligada (Encadeada) Estática de Elementos Inteiros:
+// lista_ligada_estatica_inteiros.h
+#ifndef LISTA_LIGADA_ESTATICA_INTEIROS_H
+#define LISTA_LIGADA_ESTATICA_INTEIROS_H
+
+struct NoInt {
+    int valor;
+    struct NoInt *prox;
+};
+
+struct ListaLigadaInt {
+    struct NoInt nos[MAX_TAM];
+    int tamanho;
+};
+
+struct ListaLigadaInt criarListaLigadaInt();
+void inserirElementoListaLigadaInt(struct ListaLigadaInt *lista, int valor);
+void imprimirListaLigadaInt(struct ListaLigadaInt *lista);
+
+#endif // LISTA_LIGADA_ESTATICA_INTEIROS_H
+// lista_ligada_estatica_inteiros.c
+#include "lista_ligada_estatica_inteiros.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+struct ListaLigadaInt criarListaLigadaInt() {
+    struct ListaLigadaInt lista;
+    for (int i = 0; i < MAX_TAM - 1; i++) {
+        lista.nos[i].prox = &lista.nos[i + 1];
+    }
+    lista.nos[MAX_TAM - 1].prox = NULL;
+    lista.tamanho = 0;
+    return lista;
+}
+
+void inserirElementoListaLigadaInt(struct ListaLigadaInt *lista, int valor) {
+    if (lista->tamanho < MAX_TAM) {
+        struct NoInt *novoNo = &lista->nos[lista->tamanho++];
+        novoNo->valor = valor;
+        novoNo->prox = NULL;
+    }
+}
+
+void imprimirListaLigadaInt(struct ListaLigadaInt *lista) {
+    struct NoInt *atual = lista->nos[0].prox;
+    while (atual != NULL) {
+        printf("%d ", atual->valor);
+        atual = atual->prox;
+    }
+    printf("\n");
+}
+//Lista Ligada (Encadeada) Estática de Elementos do Tipo Aluno:
+// lista_ligada_estatica_aluno.h
+#ifndef LISTA_LIGADA_ESTATICA_ALUNO_H
+#define LISTA_LIGADA_ESTATICA_ALUNO_H
+
+struct Aluno {
+    int codigo;
+    char nome[50];
+    int idade;
+    int numeroFilhos;
+};
+
+struct NoAluno {
+    struct Aluno aluno;
+    struct NoAluno *prox;
+};
+
+struct ListaLigadaAluno {
+    struct NoAluno nos[MAX_TAM];
+    int tamanho;
+};
+
+struct ListaLigadaAluno criarListaLigadaAluno();
+void inserirAlunoListaLigada(struct ListaLigadaAluno *lista, struct Aluno aluno);
+void imprimirListaLigadaAluno(struct ListaLigadaAluno *lista);
+
+#endif // LISTA_LIGADA_ESTATICA_ALUNO_H
+// lista_ligada_estatica_aluno.c
+#include "lista_ligada_estatica_aluno.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+struct ListaLigadaAluno criarListaLigadaAluno() {
+    struct ListaLigadaAluno lista;
+    for (int i = 0; i < MAX_TAM - 1; i++) {
+        lista.nos[i].prox = &lista.nos[i + 1];
+    }
+    lista.nos[MAX_TAM - 1].prox = NULL;
+    lista.tamanho = 0;
+    return lista;
+}
+
+void inserirAlunoListaLigada(struct ListaLigadaAluno *lista, struct Aluno aluno) {
+    if (lista->tamanho < MAX_TAM) {
+        struct NoAluno *novoNo = &lista->nos[lista->tamanho++];
+        novoNo->aluno = aluno;
+        novoNo->prox = NULL;
+    }
+}
+
+void imprimirListaLigadaAluno(struct ListaLigadaAluno *lista) {
+    struct NoAluno *atual = lista->nos[0].prox;
+    while (atual != NULL) {
+        printf("Código: %d, Nome: %s, Idade: %d, Número de Filhos: %d\n",
+               atual->aluno.codigo, atual->aluno.nome,
+               atual->aluno.idade, atual->aluno.numeroFilhos);
+        atual = atual->prox;
+    }
+}
 
