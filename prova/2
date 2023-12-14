@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_TAM 100
+
+struct Lista {
+    int elementos[MAX_TAM];
+    int tamanho;
+};
+
+// Inicializar a lista
+void inicializarLista(struct Lista *lista) {
+    lista->tamanho = 0;
+}
+
+// Inserir elemento de forma ordenada (permitindo duplicatas)
+void inserirOrdenado(struct Lista *lista, int valor) {
+    if (lista->tamanho == MAX_TAM) {
+        printf("Erro: Lista cheia\n");
+        return;
+    }
+
+    // Encontrar a posição correta para inserir o valor
+    int i = 0;
+    while (i < lista->tamanho && lista->elementos[i] < valor) {
+        i++;
+    }
+
+    // Deslocar os elementos para abrir espaço para o novo valor
+    for (int j = lista->tamanho; j > i; j--) {
+        lista->elementos[j] = lista->elementos[j - 1];
+    }
+
+    // Inserir o valor na posição correta
+    lista->elementos[i] = valor;
+    lista->tamanho++;
+
+    printf("Elemento %d inserido com sucesso!\n", valor);
+}
+
+// Contar quantas vezes um inteiro está na lista
+int contarOcorrencias(struct Lista *lista, int valor) {
+    int ocorrencias = 0;
+    for (int i = 0; i < lista->tamanho; i++) {
+        if (lista->elementos[i] == valor) {
+            ocorrencias++;
+        }
+    }
+    return ocorrencias;
+}
+
+// Função principal
+int main() {
+    struct Lista lista;
+
+    // Inicializar a lista
+    inicializarLista(&lista);
+
+    // Inserir elementos ordenadamente permitindo duplicatas
+    inserirOrdenado(&lista, 5);
+    inserirOrdenado(&lista, 3);
+    inserirOrdenado(&lista, 7);
+    inserirOrdenado(&lista, 5); // Duplicata
+    inserirOrdenado(&lista, 9);
+
+    // Testar a contagem de ocorrências
+    int valorBuscado = 5;
+    int ocorrencias = contarOcorrencias(&lista, valorBuscado);
+    printf("O valor %d aparece na lista %d vezes.\n", valorBuscado, ocorrencias);
+
+    return 0;
+}
