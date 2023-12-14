@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+#define MAX_TAM 100
+
+struct ListaInt {
+    int elementos[MAX_TAM];
+    int tamanho;
+};
+
+void inicializarListaInt(struct ListaInt *lista) {
+    lista->tamanho = 0;
+}
+
+void inserirElementoInt(struct ListaInt *lista, int valor) {
+    if (lista->tamanho < MAX_TAM) {
+        lista->elementos[lista->tamanho++] = valor;
+        printf("Elemento %d inserido com sucesso!\n", valor);
+    } else {
+        printf("Erro: Lista cheia\n");
+    }
+}
+
+// Adicione outras operações conforme necessário
+
+int main() {
+    struct ListaInt lista;
+    inicializarListaInt(&lista);
+
+    inserirElementoInt(&lista, 5);
+    inserirElementoInt(&lista, 10);
+
+    return 0;
+}
