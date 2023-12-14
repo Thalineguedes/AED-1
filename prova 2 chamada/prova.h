@@ -22,5 +22,7 @@ struct ListaLigadaAluno {
 struct ListaLigadaAluno criarListaLigadaAluno();
 void inserirAlunoListaLigada(struct ListaLigadaAluno *lista, struct Aluno aluno);
 void imprimirListaLigadaAluno(struct ListaLigadaAluno *lista);
+void encontrarMaiorIdade(struct ListaLigadaAluno *lista);
+void imprimirDadosMaiorIdade(struct ListaLigadaAluno *lista);
 
 #endif // LISTA_LIGADA_ESTATICA_ALUNO_H
