@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+// Definindo a estrutura do aluno
+typedef struct {
+    int codigo;
+    char nome[50];
+    int idade;
+    int numero_filhos;
+} Aluno;
+
+// Definindo a lista estática de alunos
+Aluno lista_alunos[5] = {
+    {1, "Daniel", 21, 0},
+    {2, "Suza", 19, 0},
+    {3, "Danilo", 24, 1},
+    {4, "Camila", 18, 0},
+    {5, "Carlos", 22, 1}
+};
