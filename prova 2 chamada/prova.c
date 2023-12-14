@@ -20,7 +20,29 @@ void inserirAlunoListaLigada(struct ListaLigadaAluno *lista, struct Aluno aluno)
         novoNo->prox = NULL;
     }
 }
+// Função para encontrar o aluno com a maior idade
+Aluno encontrarMaiorIdade() {
+    Aluno aluno_maior_idade = lista_alunos[0];
 
+    for (int i = 1; i < 5; i++) {
+        if (lista_alunos[i].idade > aluno_maior_idade.idade) {
+            aluno_maior_idade = lista_alunos[i];
+        }
+    }
+
+    return aluno_maior_idade;
+}
+
+// Função para imprimir os dados do aluno com maior idade
+void imprimirDadosMaiorIdade() {
+    Aluno aluno_maior_idade = encontrarMaiorIdade();
+
+    printf("Aluno com maior idade:\n");
+    printf("Código: %d\n", aluno_maior_idade.codigo);
+    printf("Nome: %s\n", aluno_maior_idade.nome);
+    printf("Idade: %d\n", aluno_maior_idade.idade);
+    printf("Número de filhos: %d\n", aluno_maior_idade.numero_filhos);
+}
 void imprimirListaLigadaAluno(struct ListaLigadaAluno *lista) {
     struct NoAluno *atual = lista->nos[0].prox;
     while (atual != NULL) {
