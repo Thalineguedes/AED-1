@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_TAM 100
+
+struct Aluno {
+    int codigo;
+    char nome[50];
+    int idade;
+    int numeroFilhos;
+};
+
+struct ListaAluno {
+    struct Aluno elementos[MAX_TAM];
+    int tamanho;
+};
+
+void inicializarListaAluno(struct ListaAluno *lista) {
+    lista->tamanho = 0;
+}
+
+void inserirAluno(struct ListaAluno *lista, struct Aluno aluno) {
+    if (lista->tamanho < MAX_TAM) {
+        lista->elementos[lista->tamanho++] = aluno;
+        printf("Aluno inserido com sucesso!\n");
+    } else {
+        printf("Erro: Lista cheia\n");
+    }
+}
+
+// Adicione outras operações conforme necessário
+
+int main() {
+    struct ListaAluno lista;
+    inicializarListaAluno(&lista);
+
+    struct Aluno aluno1 = {1, "Joao", 20, 0};
+    struct Aluno aluno2 = {2, "Maria", 22, 1};
+
+    inserirAluno(&lista, aluno1);
+    inserirAluno(&lista, aluno2);
+
+    return 0;
+}
