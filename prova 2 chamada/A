@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include "lista_ligada_estatica_aluno.h"
+
+int main() {
+    struct ListaLigadaAluno lista = criarListaLigadaAluno();
+
+    struct Aluno aluno1 = {1, "Daniel", 21, 0};
+    struct Aluno aluno2 = {2, "Suza", 19, 0};
+    struct Aluno aluno3 = {3, "Danilo", 24, 1};
+    struct Aluno aluno4 = {4, "Camila", 18, 0};
+    struct Aluno aluno5 = {5, "Carlos", 22, 1};
+
+    inserirAlunoListaLigada(&lista, aluno1);
+    inserirAlunoListaLigada(&lista, aluno2);
+    inserirAlunoListaLigada(&lista, aluno3);
+    inserirAlunoListaLigada(&lista, aluno4);
+    inserirAlunoListaLigada(&lista, aluno5);
+
+    struct Aluno maiorIdadeAluno = alunoMaiorIdade(&lista);
+    printf("Aluno com maior idade:\n");
+    printf("Código: %d, Nome: %s, Idade: %d, Número de Filhos: %d\n", 
+           maiorIdadeAluno.codigo, maiorIdadeAluno.nome,
+           maiorIdadeAluno.idade, maiorIdadeAluno.numeroFilhos);
+
+    return 0;
+}
