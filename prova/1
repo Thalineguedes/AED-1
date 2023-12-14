@@ -1,72 +1,64 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-#define MAX_TAM 100
+#define MAX_ALUNOS 100
 
-struct Lista {
-    int elementos[MAX_TAM];
+// Definição da estrutura do aluno
+struct Aluno {
+    int codigo;
+    char nome[50];
+    int idade;
+    int numeroFilhos;
+};
+
+// Definição da estrutura da Lista Ligada Estática
+struct ListaLigadaEstatica {
+    struct Aluno alunos[MAX_ALUNOS];
     int tamanho;
 };
 
-// Inicializar a lista
-void inicializarLista(struct Lista *lista) {
+// Função para inicializar a lista
+void inicializarLista(struct ListaLigadaEstatica *lista) {
     lista->tamanho = 0;
 }
 
-// Inserir elemento de forma ordenada (permitindo duplicatas)
-void inserirOrdenado(struct Lista *lista, int valor) {
-    if (lista->tamanho == MAX_TAM) {
-        printf("Erro: Lista cheia\n");
-        return;
-    }
-
-    // Encontrar a posição correta para inserir o valor
-    int i = 0;
-    while (i < lista->tamanho && lista->elementos[i] < valor) {
-        i++;
-    }
-
-    // Deslocar os elementos para abrir espaço para o novo valor
-    for (int j = lista->tamanho; j > i; j--) {
-        lista->elementos[j] = lista->elementos[j - 1];
-    }
-
-    // Inserir o valor na posição correta
-    lista->elementos[i] = valor;
-    lista->tamanho++;
-
-    printf("Elemento %d inserido com sucesso!\n", valor);
-}
-
-// Contar quantas vezes um inteiro está na lista
-int contarOcorrencias(struct Lista *lista, int valor) {
-    int ocorrencias = 0;
-    for (int i = 0; i < lista->tamanho; i++) {
-        if (lista->elementos[i] == valor) {
-            ocorrencias++;
+// Função para verificar se um aluno está duplicado na lista
+int alunoDuplicado(const struct ListaLigadaEstatica *lista, const struct Aluno *aluno) {
+    for (int i = 0; i < lista->tamanho; ++i) {
+        if (lista->alunos[i].codigo == aluno->codigo) {
+            return 1; // Encontrou um aluno com o mesmo código
         }
     }
-    return ocorrencias;
+    return 0; // Não encontrou duplicatas
+}
+
+// Função para adicionar um aluno à lista
+void adicionarAluno(struct ListaLigadaEstatica *lista, const struct Aluno *aluno) {
+    if (lista->tamanho < MAX_ALUNOS && !alunoDuplicado(lista, aluno)) {
+        lista->alunos[lista->tamanho++] = *aluno;
+        printf("Aluno adicionado com sucesso!\n");
+    } else {
+        printf("Erro: Aluno já existe ou a lista está cheia.\n");
+    }
 }
 
 // Função principal
 int main() {
-    struct Lista lista;
+    struct ListaLigadaEstatica lista;
 
     // Inicializar a lista
     inicializarLista(&lista);
 
-    // Inserir elementos ordenadamente permitindo duplicatas
-    inserirOrdenado(&lista, 5);
-    inserirOrdenado(&lista, 3);
-    inserirOrdenado(&lista, 7);
-    inserirOrdenado(&lista, 5); // Duplicata
-    inserirOrdenado(&lista, 9);
+    // Adicionar alguns alunos para testar
+    struct Aluno aluno1 = {1, "Joao", 20, 0};
+    struct Aluno aluno2 = {2, "Maria", 22, 1};
+    struct Aluno aluno3 = {3, "Carlos", 25, 2};
+    struct Aluno aluno4 = {1, "Joao", 20, 0}; // Este aluno tem o mesmo código que aluno1
 
-    // Testar a contagem de ocorrências
-    int valorBuscado = 5;
-    int ocorrencias = contarOcorrencias(&lista, valorBuscado);
-    printf("O valor %d aparece na lista %d vezes.\n", valorBuscado, ocorrencias);
+    adicionarAluno(&lista, &aluno1);
+    adicionarAluno(&lista, &aluno2);
+    adicionarAluno(&lista, &aluno3);
+    adicionarAluno(&lista, &aluno4); // Tentando adicionar um aluno duplicado
 
     return 0;
 }
