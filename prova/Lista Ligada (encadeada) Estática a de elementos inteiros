@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+#define MAX_TAM 100
+
+struct NoInt {
+    int valor;
+    struct NoInt *prox;
+};
+
+struct ListaLigadaInt {
+    struct NoInt nos[MAX_TAM];
+    int tamanho;
+};
+
+void inicializarListaLigadaInt(struct ListaLigadaInt *lista) {
+    lista->tamanho = 0;
+}
+
+// Adicione outras operações conforme necessário
+
+int main() {
+    struct ListaLigadaInt lista;
+    inicializarListaLigadaInt(&lista);
+
+    // Implemente operações para manipulação da lista ligada
+
+    return 0;
+}
