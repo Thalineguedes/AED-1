@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+#define MAX_TAM 100
+
+struct Aluno {
+    int codigo;
+    char nome[50];
+    int idade;
+    int numeroFilhos;
+};
+
+struct NoAluno {
+    struct Aluno aluno;
+    struct NoAluno *prox;
+};
+
+struct ListaLigadaAluno {
+    struct NoAluno nos[MAX_TAM];
+    int tamanho;
+};
+
+void inicializarListaLigadaAluno(struct ListaLigadaAluno *lista) {
+    lista->tamanho = 0;
+}
+
+// Adicione outras operações conforme necessário
+
+int main() {
+    struct ListaLigadaAluno lista;
+    inicializarListaLigadaAluno(&lista);
+
+    // Implemente operações para manipulação da lista ligada de alunos
+
+    return 0;
+}
